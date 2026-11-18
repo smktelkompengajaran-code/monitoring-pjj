@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Laporan PJJ Daring</title>
+  <style>
+    :root{font-family:Arial,Helvetica,sans-serif;color:#182230;background:#f3f6fb}*{box-sizing:border-box}body{margin:0;padding:24px 14px}.wrap{max-width:900px;margin:auto}.hero{background:#173b67;color:#fff;padding:25px 28px;border-radius:16px 16px 0 0}.hero h1{font-size:24px;margin:0 0 7px}.hero p{margin:0;color:#dce8f6;line-height:1.5}.card{background:#fff;padding:24px 28px;border:1px solid #e2e8f0;border-top:0;border-radius:0 0 16px 16px;box-shadow:0 8px 28px #19385a12}.section{margin:0 0 24px}.section h2{font-size:17px;color:#173b67;border-bottom:1px solid #e5ebf3;padding-bottom:9px;margin:0 0 16px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 18px}.field{min-width:0}.field.full{grid-column:1/-1}label,.legend{display:block;font-size:13px;font-weight:700;margin-bottom:7px;color:#334155}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;font:inherit;color:#182230}input:focus,select:focus,textarea:focus{outline:2px solid #9bc4f2;border-color:#3978b8}textarea{min-height:82px;resize:vertical}.checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.check{display:flex;align-items:center;gap:9px;font-weight:400;font-size:14px;margin:0}.check input{width:auto}.hint{font-size:12px;color:#64748b;margin-top:5px}.actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px}button{border:0;background:#1769aa;color:white;padding:13px 22px;border-radius:9px;font-weight:700;font-size:15px;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.status{font-size:13px;color:#334155;line-height:1.5}.required{color:#b42318}.footer{font-size:12px;color:#64748b;margin-top:17px;line-height:1.5}@media(max-width:640px){body{padding:12px 8px}.hero,.card{padding:20px 16px}.grid,.checks{grid-template-columns:1fr}.hero h1{font-size:21px}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>Form Laporan Pembelajaran Jarak Jauh (PJJ)</h1>
+    <p>Pelaporan pelaksanaan pembelajaran daring melalui Learning Management System (MLS). Isi satu formulir untuk setiap pertemuan.</p>
+  </header>
+  <main class="card">
+    <form id="reportForm">
+      <section class="section">
+        <h2>A. Identitas Guru dan Pertemuan</h2>
+        <div class="grid">
+          <div class="field full"><label for="teacher">Nama guru <span class="required">*</span></label><select id="teacher" name="teacher" required><option value="">Memuat daftar guru...</option></select><div class="hint" id="teacherHint">Nama guru diambil dari tab "Daftar Guru" pada Google Spreadsheet.</div></div>
+          <div class="field"><label for="date">Tanggal pembelajaran <span class="required">*</span></label><input id="date" name="date" type="date" required></div>
+          <div class="field"><label for="meeting">Pertemuan ke- <span class="required">*</span></label><input id="meeting" name="meeting" type="number" min="1" max="100" required placeholder="Contoh: 3"></div>
+          <div class="field"><label for="semester">Semester <span class="required">*</span></label><select id="semester" name="semester" required><option value="">Pilih semester</option><option>Ganjil</option><option>Genap</option></select></div>
+          <div class="field"><label for="year">Tahun pelajaran <span class="required">*</span></label><input id="year" name="year" required placeholder="Contoh: 2026/2027"></div>
+          <div class="field"><label for="subject">Mata pelajaran <span class="required">*</span></label><input id="subject" name="subject" required maxlength="100" placeholder="Contoh: Matematika"></div>
+          <div class="field"><label for="className">Kelas <span class="required">*</span></label><input id="className" name="className" required maxlength="40" placeholder="Contoh: VIII-A"></div>
+          <div class="field"><label for="startTime">Waktu mulai</label><input id="startTime" name="startTime" type="time"></div>
+          <div class="field"><label for="endTime">Waktu selesai</label><input id="endTime" name="endTime" type="time"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>B. Aktivitas Pembelajaran di MLS</h2>
+        <div class="grid">
+          <div class="field full"><label for="topic">Materi/topik pembelajaran <span class="required">*</span></label><input id="topic" name="topic" required maxlength="250" placeholder="Tuliskan materi yang dibahas"></div>
+          <div class="field full"><label for="objective">Tujuan pembelajaran</label><textarea id="objective" name="objective" maxlength="1000" placeholder="Tuliskan tujuan pembelajaran secara singkat"></textarea></div>
+          <div class="field"><label for="method">Metode pembelajaran</label><select id="method" name="method"><option value="">Pilih metode</option><option>Materi dan tugas mandiri</option><option>Video pembelajaran</option><option>Diskusi/forum</option><option>Konferensi video</option><option>Kuis/evaluasi</option><option>Kombinasi</option><option>Lainnya</option></select></div>
+          <div class="field"><label for="mlsLink">Link kelas/aktivitas MLS</label><input id="mlsLink" name="mlsLink" type="url" placeholder="https://..."><div class="hint">Opsional, tempel tautan yang dapat diakses petugas sekolah.</div></div>
+          <div class="field full"><span class="legend">Aktivitas yang dilakukan <span class="required">*</span></span>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="activities" value="Mengunggah materi"> Mengunggah materi</label>
+              <label class="check"><input type="checkbox" name="activities" value="Memberikan petunjuk belajar"> Memberikan petunjuk belajar</label>
+              <label class="check"><input type="checkbox" name="activities" value="Memberikan tugas/latihan"> Memberikan tugas/latihan</label>
+              <label class="check"><input type="checkbox" name="activities" value="Memberikan kuis/evaluasi"> Memberikan kuis/evaluasi</label>
+              <label class="check"><input type="checkbox" name="activities" value="Diskusi/interaksi"> Diskusi/interaksi dengan siswa</label>
+              <label class="check"><input type="checkbox" name="activities" value="Umpan balik"> Memberikan umpan balik</label>
+            </div>
+            <div class="hint">Pilih minimal satu aktivitas.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>C. Partisipasi Siswa</h2>
+        <div class="grid">
+          <div class="field"><label for="enrolled">Jumlah siswa terdaftar di kelas <span class="required">*</span></label><input id="enrolled" name="enrolled" type="number" min="0" required value="0"></div>
+          <div class="field"><label for="accessed">Siswa mengakses materi</label><input id="accessed" name="accessed" type="number" min="0" value="0"></div>
+          <div class="field"><label for="submitted">Siswa mengumpulkan tugas</label><input id="submitted" name="submitted" type="number" min="0" value="0"></div>
+          <div class="field"><label for="evaluated">Siswa mengikuti evaluasi</label><input id="evaluated" name="evaluated" type="number" min="0" value="0"></div>
+        </div>
+        <div class="hint">Jumlah siswa pada kolom partisipasi tidak boleh melebihi jumlah siswa terdaftar.</div>
+      </section>
+
+      <section class="section">
+        <h2>D. Kendala dan Tindak Lanjut</h2>
+        <div class="grid">
+          <div class="field"><label for="obstacle">Kendala pembelajaran</label><select id="obstacle" name="obstacle"><option value="Tidak ada">Tidak ada</option><option>Jaringan/internet</option><option>Kendala penggunaan MLS</option><option>Siswa tidak aktif</option><option>Perangkat siswa/guru</option><option>Lainnya</option></select></div>
+          <div class="field"><label for="followup">Tindak lanjut</label><input id="followup" name="followup" maxlength="500" placeholder="Contoh: menghubungi siswa melalui wali kelas"></div>
+          <div class="field full"><label for="notes">Catatan tambahan</label><textarea id="notes" name="notes" maxlength="1000" placeholder="Catatan lain yang perlu diketahui tim kurikulum"></textarea></div>
+        </div>
+      </section>
+      <input type="text" name="website" id="website" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px" aria-hidden="true">
+      <div class="actions"><button id="submitBtn" type="submit">Kirim Laporan</button><span class="status" id="status" role="status" aria-live="polite">Pastikan data sudah benar sebelum dikirim.</span></div>
+      <p class="footer">Data laporan digunakan untuk keperluan monitoring internal sekolah. Hindari memasukkan data pribadi siswa yang tidak diperlukan.</p>
+    </form>
+  </main>
+</div>
+<script>
+  // Ganti URL ini dengan URL Web App Google Apps Script setelah deployment.
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzz0rTLI0WVHOi-iQIHcGLw1jrak9SqNU_AJ3STKdOF2YSDSaN27rb559QPaJLDQsMzPQ/exec';
+  const form = document.getElementById('reportForm');
+  const statusEl = document.getElementById('status');
+  const submitBtn = document.getElementById('submitBtn');
+  document.getElementById('date').value = new Date().toLocaleDateString('en-CA');
+
+  // Memuat nama guru dari tab 'Daftar Guru' melalui JSONP agar dapat dibaca dari GitHub Pages.
+  function loadTeachers() {
+    const callbackName = 'receiveTeacherList';
+    window[callbackName] = (names) => {
+      const select = document.getElementById('teacher');
+      select.innerHTML = '<option value="">Pilih nama guru</option>';
+      (Array.isArray(names) ? names : []).forEach((name) => {
+        const option = document.createElement('option');
+        option.value = name; option.textContent = name; select.appendChild(option);
+      });
+      const hint = document.getElementById('teacherHint');
+      hint.textContent = names && names.length ? `${names.length} nama guru tersedia.` : 'Daftar guru belum ditemukan. Isi nama pada tab Daftar Guru kolom A mulai baris 2.';
+      delete window[callbackName];
+    };
+    const script = document.createElement('script');
+    script.src = `${SCRIPT_URL}?action=teachers&callback=${callbackName}`;
+    script.onerror = () => {
+      document.getElementById('teacher').innerHTML = '<option value="">Daftar guru gagal dimuat</option>';
+      document.getElementById('teacherHint').textContent = 'Periksa URL Apps Script dan pastikan tab Daftar Guru sudah tersedia.';
+      delete window[callbackName];
+    };
+    document.head.appendChild(script);
+  }
+  if (!SCRIPT_URL.includes('TEMPEL_URL')) loadTeachers();
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const selectedActivities = [...form.querySelectorAll('input[name="activities"]:checked')];
+    if (!selectedActivities.length) { statusEl.textContent = 'Pilih minimal satu aktivitas pembelajaran.'; return; }
+    const total = Number(form.enrolled.value);
+    for (const id of ['accessed','submitted','evaluated']) {
+      if (Number(form[id].value) > total) { statusEl.textContent = 'Jumlah partisipasi siswa tidak boleh melebihi jumlah siswa terdaftar.'; form[id].focus(); return; }
+    }
+    if (SCRIPT_URL.includes('TEMPEL_URL')) { statusEl.textContent = 'URL Apps Script belum dipasang. Periksa pengaturan pada file index.html.'; return; }
+    const data = new URLSearchParams();
+    for (const [key, value] of new FormData(form).entries()) data.append(key, value);
+    data.set('activities', selectedActivities.map(x => x.value).join('; '));
+    submitBtn.disabled = true;
+    statusEl.textContent = 'Mengirim laporan...';
+    try {
+      // no-cors dipakai karena endpoint Google Apps Script lintas domain.
+      // Respons tidak dapat dibaca browser; periksa spreadsheet untuk memastikan baris masuk.
+      await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: data });
+      statusEl.textContent = 'Permintaan pengiriman sudah dikirim. Silakan periksa spreadsheet untuk memastikan laporan tercatat.';
+      form.reset();
+      document.getElementById('date').value = new Date().toLocaleDateString('en-CA');
+
+  // Memuat nama guru dari tab 'Daftar Guru' melalui JSONP agar dapat dibaca dari GitHub Pages.
+  function loadTeachers() {
+    const callbackName = 'receiveTeacherList';
+    window[callbackName] = (names) => {
+      const select = document.getElementById('teacher');
+      select.innerHTML = '<option value="">Pilih nama guru</option>';
+      (Array.isArray(names) ? names : []).forEach((name) => {
+        const option = document.createElement('option');
+        option.value = name; option.textContent = name; select.appendChild(option);
+      });
+      const hint = document.getElementById('teacherHint');
+      hint.textContent = names && names.length ? `${names.length} nama guru tersedia.` : 'Daftar guru belum ditemukan. Isi nama pada tab Daftar Guru kolom A mulai baris 2.';
+      delete window[callbackName];
+    };
+    const script = document.createElement('script');
+    script.src = `${SCRIPT_URL}?action=teachers&callback=${callbackName}`;
+    script.onerror = () => {
+      document.getElementById('teacher').innerHTML = '<option value="">Daftar guru gagal dimuat</option>';
+      document.getElementById('teacherHint').textContent = 'Periksa URL Apps Script dan pastikan tab Daftar Guru sudah tersedia.';
+      delete window[callbackName];
+    };
+    document.head.appendChild(script);
+  }
+  if (!SCRIPT_URL.includes('TEMPEL_URL')) loadTeachers();
+    } catch (err) {
+      statusEl.textContent = 'Pengiriman gagal dari browser. Periksa koneksi dan URL Apps Script, lalu coba lagi.';
+    } finally { submitBtn.disabled = false; }
+  });
+</script>
+</body>
+</html>
